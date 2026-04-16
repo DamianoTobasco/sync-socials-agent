@@ -94,12 +94,19 @@ Use these tools when the MCP server is connected:
 6. Create a post with `syncsocials_create_post`.
 7. Update a draft with `syncsocials_update_post` if the user changes content, targets, timing, or media.
 8. Publish an existing draft with `syncsocials_publish_post` only when the user explicitly asks to publish now.
+9. Delete a draft or cancel a scheduled post with `syncsocials_delete_post` when the user asks to cancel, delete, remove, or scrap it.
 
 For YouTube privacy:
 
 - Ask for `private`, `unlisted`, or `public` whenever YouTube is in the target list and the user has not already chosen one.
 - If the post is multi-platform and only YouTube needs a privacy choice, ask only for the YouTube privacy choice instead of blocking the rest of the request with a broad question.
 - If a post is already drafted or scheduled with YouTube `private` and the user says to make it public, call `syncsocials_update_post` with `youtubePrivacyStatus: "public"` and keep the same post.
+
+For canceling scheduled content:
+
+- If the user asks to cancel or delete a scheduled post, call `syncsocials_delete_post`.
+- Treat deleting a scheduled post as destructive. Confirm only if the user sounds unsure. If they are clear, do it.
+- Prefer deleting the existing scheduled post before creating a replacement so the user does not accidentally double-post later.
 
 For Telegram or other chat attachments:
 
@@ -136,6 +143,7 @@ Core REST routes:
 - `POST /posts`
 - `GET /posts/:id`
 - `PATCH /posts/:id`
+- `DELETE /posts/:id`
 - `POST /posts/:id/publish`
 
 Use the same bearer token. The same Pro-only access, rate limits, monthly request limits, post mutation limits, and upload limits apply to MCP and REST API usage.
