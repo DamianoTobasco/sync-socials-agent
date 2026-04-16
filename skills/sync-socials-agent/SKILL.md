@@ -59,6 +59,9 @@ openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","tr
 - If multiple connected accounts match a platform and the user did not choose one, ask which account to use.
 - Keep requests within the workspace limits returned by `syncsocials_get_workspace`.
 - Do not retry provider errors endlessly. Surface the provider error and ask the user what to change.
+- Resolve scheduling times in the workspace timezone whenever possible.
+- Treat casual user mentions of `EST`, `EDT`, or `ET` as `America/New_York` local time for the requested date, and account for daylight saving automatically.
+- When you schedule or reschedule a post, state the final absolute time back to the user in both local time and UTC so a one-hour timezone mistake is obvious before the post goes live.
 - TikTok is unavailable for active publishing until Sync Socials approval is complete.
 - X is unsupported in MCP v1.
 
@@ -75,7 +78,9 @@ YouTube:
 - Exactly one video media asset per YouTube post.
 - Requires a connected YouTube account.
 - Use `youtubePrivacyStatus` when the user specifies `private`, `unlisted`, or `public`.
-- Default YouTube privacy to `private` if the user does not specify privacy.
+- If the user targets YouTube and does not specify privacy, ask whether they want `private`, `unlisted`, or `public`.
+- If the user does not care or declines to choose, default YouTube privacy to `private` and say that explicitly.
+- If the user asks to change a draft or scheduled YouTube post from `private` to `public` or `unlisted`, update `youtubePrivacyStatus` before publish time rather than creating a duplicate post.
 
 ## MCP Workflow
 
@@ -89,6 +94,12 @@ Use these tools when the MCP server is connected:
 6. Create a post with `syncsocials_create_post`.
 7. Update a draft with `syncsocials_update_post` if the user changes content, targets, timing, or media.
 8. Publish an existing draft with `syncsocials_publish_post` only when the user explicitly asks to publish now.
+
+For YouTube privacy:
+
+- Ask for `private`, `unlisted`, or `public` whenever YouTube is in the target list and the user has not already chosen one.
+- If the post is multi-platform and only YouTube needs a privacy choice, ask only for the YouTube privacy choice instead of blocking the rest of the request with a broad question.
+- If a post is already drafted or scheduled with YouTube `private` and the user says to make it public, call `syncsocials_update_post` with `youtubePrivacyStatus: "public"` and keep the same post.
 
 For Telegram or other chat attachments:
 
