@@ -60,8 +60,11 @@ openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","tr
 - Keep requests within the workspace limits returned by `syncsocials_get_workspace`.
 - Do not retry provider errors endlessly. Surface the provider error and ask the user what to change.
 - Resolve scheduling times in the workspace timezone whenever possible.
-- Treat casual user mentions of `EST`, `EDT`, or `ET` as `America/New_York` local time for the requested date, and account for daylight saving automatically.
-- When you schedule or reschedule a post, state the final absolute time back to the user in both local time and UTC so a one-hour timezone mistake is obvious before the post goes live.
+- Treat casual user mentions of `EST`, `EDT`, or `ET` as the workspace's intended Eastern local time when the workspace timezone is `America/New_York`, and account for daylight saving automatically.
+- Do not preserve a literal `EST` offset on dates that are actually in daylight saving time. If the requested date falls in daylight saving time, interpret `2:30 PM EST` as `2:30 PM America/New_York`, which is `EDT` on that date.
+- When the user says `EST`, `EDT`, or `ET`, normalize it to `America/New_York` before creating the post and prefer saying `Eastern Time` or `America/New_York` in confirmations instead of echoing the user's raw abbreviation.
+- If the date and timezone wording are in tension, prioritize the workspace timezone and the user's likely local-time intent over the literal abbreviation.
+- When you schedule or reschedule a post, state the final absolute time back to the user in both local time and UTC so a one-hour timezone mistake is obvious before the post goes live, for example: `Scheduled for 2:30 PM Eastern Time (America/New_York) / 18:30 UTC.`
 - TikTok is unavailable for active publishing until Sync Socials approval is complete.
 - X is unsupported in MCP v1.
 
@@ -101,6 +104,12 @@ For YouTube privacy:
 - Ask for `private`, `unlisted`, or `public` whenever YouTube is in the target list and the user has not already chosen one.
 - If the post is multi-platform and only YouTube needs a privacy choice, ask only for the YouTube privacy choice instead of blocking the rest of the request with a broad question.
 - If a post is already drafted or scheduled with YouTube `private` and the user says to make it public, call `syncsocials_update_post` with `youtubePrivacyStatus: "public"` and keep the same post.
+
+For Eastern time requests:
+
+- If the workspace timezone is `America/New_York` and the user says `today at 2:30 PM EST`, schedule for `2:30 PM America/New_York` on today's date, not for the literal fixed `EST` offset.
+- On summer/daylight-saving dates, that means `2:30 PM America/New_York` becomes `18:30 UTC`, not `19:30 UTC`.
+- If you are about to send a confirmation that says `EST` while the computed UTC time corresponds to `EDT`, rewrite the confirmation before you submit the post.
 
 For canceling scheduled content:
 
