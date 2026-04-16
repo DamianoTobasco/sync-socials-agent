@@ -85,9 +85,18 @@ Use these tools when the MCP server is connected:
 2. Read connected accounts with `syncsocials_list_connections`.
 3. Read existing media with `syncsocials_list_media`.
 4. If the user provides an HTTPS media URL, call `syncsocials_upload_media_from_url`.
-5. Create a post with `syncsocials_create_post`.
-6. Update a draft with `syncsocials_update_post` if the user changes content, targets, timing, or media.
-7. Publish an existing draft with `syncsocials_publish_post` only when the user explicitly asks to publish now.
+5. If the user sends a file directly in chat and the agent runtime exposes a local attachment path, call `syncsocials_upload_media_from_local_file`.
+6. Create a post with `syncsocials_create_post`.
+7. Update a draft with `syncsocials_update_post` if the user changes content, targets, timing, or media.
+8. Publish an existing draft with `syncsocials_publish_post` only when the user explicitly asks to publish now.
+
+For Telegram or other chat attachments:
+
+- Prefer `syncsocials_upload_media_from_local_file` when the runtime gives you an absolute local file path for the received attachment.
+- Use the original filename when possible so Sync Socials keeps a clean media library.
+- Do not ask the user to upload manually if a local attachment path is available.
+- Fall back to `syncsocials_upload_media_from_url` only when the file is already hosted at an HTTPS URL.
+- If neither a local path nor an HTTPS URL is available, explain what is missing and stop before creating a broken draft.
 
 When creating or updating posts, prefer explicit targets:
 
