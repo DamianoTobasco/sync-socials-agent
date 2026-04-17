@@ -67,6 +67,8 @@ openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","tr
 - When you schedule or reschedule a post, state the final absolute time back to the user in both local time and UTC so a one-hour timezone mistake is obvious before the post goes live, for example: `Scheduled for 2:30 PM Eastern Time (America/New_York) / 18:30 UTC.`
 - TikTok is unavailable for active publishing until Sync Socials approval is complete.
 - X is unsupported in MCP v1.
+- Distinguish post `title` from post `body`/caption. If the user says `name it`, `title it`, or gives only a title, set `title` only and leave `body` empty unless they explicitly provide caption, body, or description text.
+- Do not copy the title into the caption by default. A title-only request is not a caption request.
 
 ## Supported Platforms
 
@@ -136,6 +138,21 @@ When creating or updating posts, prefer explicit targets:
   ]
 }
 ```
+
+For title versus caption:
+
+- `title` is the internal campaign/post title inside Sync Socials.
+- `body` is the caption/description that gets published to social platforms.
+- If the user says `title it "How I Rank Different Carbs"` and gives no caption, send:
+
+```json
+{
+  "title": "How I Rank Different Carbs",
+  "body": ""
+}
+```
+
+- Only populate `body` when the user explicitly gives caption copy such as `caption this`, `write this in the description`, `use this as the post text`, or equivalent.
 
 ## REST Fallback
 
