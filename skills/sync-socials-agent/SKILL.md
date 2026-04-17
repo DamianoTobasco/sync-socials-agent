@@ -69,6 +69,8 @@ openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","tr
 - X is unsupported in MCP v1.
 - Distinguish post `title` from post `body`/caption. If the user says `name it`, `title it`, or gives only a title, set `title` only and leave `body` empty unless they explicitly provide caption, body, or description text.
 - Do not copy the title into the caption by default. A title-only request is not a caption request.
+- Treat the post title as an internal Sync Socials campaign title unless the user explicitly asks for caption/body text. Facebook and Instagram caption text should come from `body`, not from the internal title.
+- If the user does not provide hashtags, let Sync Socials auto-generate three relevant hashtags from the title instead of inventing a long manual list.
 
 ## Supported Platforms
 
@@ -153,6 +155,8 @@ For title versus caption:
 ```
 
 - Only populate `body` when the user explicitly gives caption copy such as `caption this`, `write this in the description`, `use this as the post text`, or equivalent.
+- If the user says `no caption`, `leave the description blank`, or gives only a title, keep `body` as an empty string.
+- Sync Socials will auto-add three title-based hashtags when `tags` is omitted.
 
 ## REST Fallback
 
