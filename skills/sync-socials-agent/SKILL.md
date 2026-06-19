@@ -1,6 +1,6 @@
 ---
 name: sync-socials-agent
-description: Use this skill when a user wants an AI agent to connect Sync Socials, use the hosted Sync Socials MCP/API, upload media, create drafts, schedule posts, or publish to Facebook, Instagram, or YouTube.
+description: Connect and operate Sync Socials through its hosted MCP/API. Use when a user wants an AI agent to generate social content from a website or business brief, create untargeted content concepts, upload media, create drafts, schedule posts, or publish to Facebook, Instagram, TikTok when enabled, or YouTube.
 ---
 
 # Sync Socials Agent
@@ -103,6 +103,19 @@ Use these tools when the MCP server is connected:
 8. Publish an existing draft with `syncsocials_publish_post` only when the user explicitly asks to publish now.
 9. Delete a draft or cancel a scheduled post with `syncsocials_delete_post` when the user asks to cancel, delete, remove, or scrap it.
 
+## Content Generation Workflow
+
+When the user asks for a campaign, content batch, distribution plan, viral ideas, or posts generated from a website:
+
+1. Read the website or use the business description the user supplied.
+2. Confirm or infer the target platforms, piece count, goal, and tone. Ask only for missing details that materially change the output.
+3. Generate a varied mix of platform-specific concepts. Give each concept a strong hook, ready-to-use caption, concise visual or shot direction, relevant hashtags, and a distinct format.
+4. Call `syncsocials_create_content_draft` once per approved concept when media and destination accounts have not been selected. Prefix the internal title with the intended platform, such as `Instagram · The three-minute content system`.
+5. Use `syncsocials_create_post` instead only when the user has selected valid connected accounts and supplied any media required by those platforms.
+6. Default to drafts. Never schedule or publish generated content unless the user clearly asks for that action.
+
+The user's Codex or Claude plan performs the generation. Do not ask for an OpenAI or Anthropic API key when this skill is already running inside their authenticated agent. The only credential needed by the MCP connection is the user's Sync Socials workspace API key.
+
 For YouTube privacy:
 
 - Ask for `private`, `unlisted`, or `public` whenever YouTube is in the target list and the user has not already chosen one.
@@ -176,4 +189,4 @@ Core REST routes:
 - `DELETE /posts/:id`
 - `POST /posts/:id/publish`
 
-Use the same bearer token. The same Pro-only access, rate limits, monthly request limits, post mutation limits, and upload limits apply to MCP and REST API usage.
+Use the same bearer token. The same paid-plan access, rate limits, monthly request limits, post mutation limits, and upload limits apply to MCP and REST API usage.
