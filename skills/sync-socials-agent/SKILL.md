@@ -111,8 +111,12 @@ When the user asks for a campaign, content batch, distribution plan, viral ideas
 2. Confirm or infer the target platforms, piece count, goal, and tone. Ask only for missing details that materially change the output.
 3. Generate a varied mix of platform-specific concepts. Give each concept a strong hook, ready-to-use caption, concise visual or shot direction, relevant hashtags, and a distinct format.
 4. Call `syncsocials_create_content_draft` once per approved concept when media and destination accounts have not been selected. Prefix the internal title with the intended platform, such as `Instagram · The three-minute content system`.
-5. Use `syncsocials_create_post` instead only when the user has selected valid connected accounts and supplied any media required by those platforms.
-6. Default to drafts. Never schedule or publish generated content unless the user clearly asks for that action.
+5. When the user selected a destination account for each platform, use `syncsocials_create_post` with `action: "draft"` and exactly one explicit `{ platform, accountId }` target per concept. Do not fall back to an untargeted content draft when the account ID is already known.
+6. Respect the requested content type:
+   - `text`: create the targeted draft without media.
+   - `image`: generate a finished image when the runtime has image generation, upload it with `syncsocials_upload_media_from_local_file`, and create an `image` draft with the returned media asset ID. If generation is unavailable, create the targeted image draft without media and return a production-ready image prompt.
+   - `video`: generate a finished vertical clip when the runtime has video generation, upload it with `syncsocials_upload_media_from_local_file`, and create a `video` draft with the returned media asset ID. If generation is unavailable, create the targeted video draft without media and return a production-ready video prompt and shot list.
+7. Default to drafts. Never schedule or publish generated content unless the user clearly asks for that action.
 
 The user's Codex or Claude plan performs the generation. Do not ask for an OpenAI or Anthropic API key when this skill is already running inside their authenticated agent. The only credential needed by the MCP connection is the user's Sync Socials workspace API key.
 
