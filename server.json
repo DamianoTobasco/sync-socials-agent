@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.damianotobasco/sync-socials-agent",
+  "name": "io.github.DamianoTobasco/sync-socials-agent",
   "title": "Sync Socials",
   "description": "Create, schedule and publish social posts to TikTok, Instagram, Facebook and YouTube.",
   "version": "1.0.0",
