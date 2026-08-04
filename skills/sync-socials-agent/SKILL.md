@@ -1,6 +1,6 @@
 ---
 name: sync-socials-agent
-description: Connect and operate Sync Socials through its hosted MCP/API. Use when a user wants an AI agent to generate social content from a website or business brief, create untargeted content concepts, upload media, create drafts, schedule posts, or publish to Facebook, Instagram, TikTok when enabled, or YouTube.
+description: Connect and operate Sync Socials through its hosted MCP/API. Use when a user wants an AI agent to generate social content from a website or business brief, create untargeted content concepts, upload media, create drafts, schedule posts, or publish to TikTok, Facebook, Instagram, or YouTube.
 ---
 
 # Sync Socials Agent
@@ -65,7 +65,6 @@ openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","tr
 - When the user says `EST`, `EDT`, or `ET`, normalize it to `America/New_York` before creating the post and prefer saying `Eastern Time` or `America/New_York` in confirmations instead of echoing the user's raw abbreviation.
 - If the date and timezone wording are in tension, prioritize the workspace timezone and the user's likely local-time intent over the literal abbreviation.
 - When you schedule or reschedule a post, state the final absolute time back to the user in both local time and UTC so a one-hour timezone mistake is obvious before the post goes live, for example: `Scheduled for 2:30 PM Eastern Time (America/New_York) / 18:30 UTC.`
-- TikTok is unavailable for active publishing until Sync Socials approval is complete.
 - X is unsupported in MCP v1.
 - Distinguish post `title` from post `body`/caption. If the user says `name it`, `title it`, or gives only a title, set `title` only and leave `body` empty unless they explicitly provide caption, body, or description text.
 - Do not copy the title into the caption by default. A title-only request is not a caption request.
@@ -73,6 +72,10 @@ openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","tr
 - If the user does not provide hashtags, let Sync Socials auto-generate three relevant hashtags from the title instead of inventing a long manual list.
 
 ## Supported Platforms
+
+TikTok:
+- Direct post and scheduling are live.
+- Video posts, subject to connected-account capability checks.
 
 Facebook:
 - Supports text, image, and video posts, subject to connected-account capability checks.

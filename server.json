@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.damianotobasco/sync-socials-agent",
+  "title": "Sync Socials",
+  "description": "Create, schedule and publish social posts to TikTok, Instagram, Facebook and YouTube.",
+  "version": "1.0.0",
+  "websiteUrl": "https://sync-socials.com/ai-social-media-agent.html",
+  "repository": {
+    "url": "https://github.com/DamianoTobasco/sync-socials-agent",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://sync-socials.com/assets/logo.png",
+      "mimeType": "image/png",
+      "sizes": ["any"]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.sync-socials.com/api/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Sync Socials API key as a bearer token. Generate one in your workspace settings at app.sync-socials.com, then use the format: Bearer YOUR_API_KEY",
+          "isRequired": true,
+          "isSecret": true,
+          "placeholder": "Bearer YOUR_SYNC_SOCIALS_API_KEY"
+        }
+      ]
+    }
+  ]
+}
