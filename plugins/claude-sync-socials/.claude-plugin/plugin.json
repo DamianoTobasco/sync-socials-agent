@@ -1,0 +1,19 @@
+{
+  "name": "sync-socials",
+  "version": "0.2.0",
+  "description": "Manage social drafts, existing media, schedules, and post status using the Sync Socials connector. Requires a Sync Socials workspace and account connection.",
+  "author": {
+    "name": "Sync Socials / Evolve AI LLC",
+    "email": "contactsyncsocials@gmail.com",
+    "url": "https://sync-socials.com"
+  },
+  "homepage": "https://sync-socials.com/claude.html",
+  "keywords": [
+    "social-media",
+    "publishing",
+    "drafts",
+    "scheduling"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/DamianoTobasco/sync-socials-agent"
+}
