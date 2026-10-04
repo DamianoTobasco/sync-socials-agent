@@ -15,5 +15,9 @@
     "scheduling"
   ],
   "license": "MIT",
-  "repository": "https://github.com/DamianoTobasco/sync-socials-agent"
+  "repository": "https://github.com/DamianoTobasco/sync-socials-agent",
+  "privacyPolicyUrl": "https://app.sync-socials.com/privacy",
+  "documentationUrl": "https://sync-socials.com/claude.html",
+  "supportUrl": "https://sync-socials.com/claude.html#help",
+  "termsOfServiceUrl": "https://app.sync-socials.com/terms"
 }
