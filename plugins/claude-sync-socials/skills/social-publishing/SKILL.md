@@ -19,10 +19,21 @@ capabilities, and allowances. For targeted drafts, schedules, or publishing, cal
 `syncsocials_list_connections` and use only the returned connected account IDs.
 Do not infer that a destination is available from its platform name. When more
 than one account matches and the user has not selected one, ask them to choose.
+Use `syncsocials_list_posts` to inspect the queue or locate a requested post.
+
+Facebook publishing targets Facebook Pages, not personal profiles. Instagram
+publishing requires a business or creator account linked to a Facebook Page and
+an image or video; text-only Instagram posts are unsupported. Use each platform's
+own returned account ID, including when Facebook and Instagram share a linked
+Page. If a destination is missing or needs reauthorization, direct the user to
+Sync Socials Connections to connect or reconnect, allow publishing, and select
+the correct Page or linked Instagram account. Recheck the connection before
+targeting it; app approval does not replace the customer's account consent.
 
 If the tools are absent or authentication fails, explain that a connected Sync
 Socials workspace is required. In Chat or Cowork, direct the user to the plugin's
-Connectors tab; in Claude Code, use the normal `/mcp` connection interface.
+Connectors tab. This bundle supports Claude apps and Cowork; direct Claude Code
+OAuth is unsupported. Use the setup guide for the supported connection flow.
 Installing the plugin alone does not authenticate the workspace.
 Do not claim that a directory listing or a working public sign-in flow exists
 unless verified. Never request OAuth client secrets, access tokens, or social

@@ -4,6 +4,9 @@
 
 [Website](https://sync-socials.com) · [For AI agents](https://sync-socials.com/ai-social-media-agent.html) · [App](https://app.sync-socials.com)
 
+For Claude apps and Cowork, use the [Claude plugin](plugins/claude-sync-socials/README.md)
+and its hosted OAuth connection. The API-key setup below is for agent clients.
+
 ---
 
 ## Install
@@ -53,6 +56,7 @@ openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","tr
 | `syncsocials_upload_media_from_url` | Upload media from an HTTPS URL |
 | `syncsocials_upload_media_from_local_file` | Upload media from a local file path |
 | `syncsocials_create_content_draft` | Save an untargeted content concept for later |
+| `syncsocials_get_brand_profile` | Read saved business profiles |
 | `syncsocials_generate_viral_concepts` | Generate content concepts from a brand brief |
 | `syncsocials_produce_viral_video` | Produce a short form video from a concept |
 | `syncsocials_create_post` | Create a draft or scheduled post with platform targets |
@@ -76,10 +80,16 @@ Once connected, talk to your agent normally:
 | Platform | Support |
 |---|---|
 | TikTok | Direct post and scheduling |
-| Instagram | Image and video posts, subject to Meta publishing rules |
-| Facebook | Text, image and video posts to Pages |
+| Instagram | Image and video posts to a business or creator account linked to a Facebook Page |
+| Facebook | Text, image and video posts to Pages; personal profiles are unsupported |
 | YouTube | Video only, exactly one video asset per post, privacy control |
+| LinkedIn | Text, image and video posts to personal profiles |
+| Telegram, Discord, Slack | Posts to connected chat destinations, within their media limits |
 | X / Twitter | Not supported in MCP v1 |
+
+New and existing customers can connect Facebook Pages and linked Instagram
+professional accounts after Meta approval. Each customer must grant publishing
+access and select the intended accounts in Sync Socials Connections.
 
 ## Safety
 

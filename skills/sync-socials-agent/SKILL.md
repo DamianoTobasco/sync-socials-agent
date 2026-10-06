@@ -78,10 +78,13 @@ TikTok:
 - Video posts, subject to connected-account capability checks.
 
 Facebook:
+- Requires a connected Facebook Page with publishing access; personal profiles are unsupported.
 - Supports text, image, and video posts, subject to connected-account capability checks.
 
 Instagram:
+- Requires a business or creator account linked to a Facebook Page, with publishing access granted.
 - Supports image and video posts, subject to Meta publishing rules and connected-account capability checks.
+- Use the Instagram account ID returned by `syncsocials_list_connections`, not the linked Facebook Page's account ID. Reconnect missing or expired permissions in Sync Socials Connections before publishing.
 
 YouTube:
 - Video only.

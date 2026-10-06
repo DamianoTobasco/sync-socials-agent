@@ -25,6 +25,18 @@ The skill defaults to drafts. It preserves post fields you did not ask to change
 and verifies write results before reporting success. Available destinations and
 allowances depend on your workspace and connected accounts.
 
+Facebook Pages and Instagram professional accounts are available to new and
+existing Sync Socials customers following Meta approval. Connect each destination
+in [Sync Socials Connections](https://app.sync-socials.com/app/connections) and
+grant publishing access. Instagram requires a business or creator account linked
+to a Facebook Page and image or video content. Personal Facebook profiles and
+personal Instagram accounts cannot be publishing destinations. Reconnect an older
+connection if it is missing publishing access. Meta approval and Claude directory
+connector review are separate processes.
+
+The same workspace tools also support YouTube, TikTok, LinkedIn personal profiles,
+Telegram, Discord, and Slack when those destinations are connected and enabled.
+
 Text concepts require a configured workspace AI provider and use its allowance.
 Existing-video editing assembles footage, text overlays, and an existing
 soundtrack. This connector does not generate images, footage, speech, or music
@@ -79,6 +91,12 @@ The [Sync Socials privacy policy](https://app.sync-socials.com/privacy) applies.
 
 ## Validation and availability
 
+Version 0.2.2 updates the publishing skill for Facebook Pages and linked Instagram
+professional accounts, adds explicit queue lookup guidance, and corrects the
+unsupported Claude Code OAuth instruction. The MCP URL and authentication flow
+are unchanged. The directory serves its last published version until the new
+version passes its scan and is published.
+
 The public 0.2.0 package passed directory validation and its security scan, was
 published, and was installed through its public listing. Hosted tests verified
 the public plugin's skill and a successful workspace read in both Chat and
@@ -106,6 +124,17 @@ in the public [Sync Socials Agent repository](https://github.com/DamianoTobasco/
 The repository's root agent-neutral skill and API-key setup are separate from
 this Claude OAuth bundle. The directory listing is linked above; publishing
 source and installing the plugin do not complete its authentication setup.
+
+To reproduce the six-file ZIP from the repository root, run:
+
+```bash
+python3 scripts/build-claude-plugin.py /tmp/sync-socials-claude.zip
+```
+
+The builder checks the manifest, credential-free connector declaration, and skill
+tool names, then prints the archive SHA-256. File order, timestamps, and permissions
+are fixed, so the same source produces the same bytes. This structural check does
+not replace the directory's validation or hosted connection tests.
 
 ## License and support
 

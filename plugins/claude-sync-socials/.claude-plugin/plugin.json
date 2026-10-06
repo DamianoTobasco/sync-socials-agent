@@ -1,7 +1,7 @@
 {
   "name": "sync-socials",
-  "version": "0.2.1",
-  "description": "Manage social drafts, existing media, schedules, and post status using the Sync Socials connector. Requires a Sync Socials workspace and account connection.",
+  "version": "0.2.2",
+  "description": "Draft, schedule, and publish social posts, including Facebook Pages and Instagram professional accounts, through your connected Sync Socials workspace.",
   "author": {
     "name": "Sync Socials / Evolve AI LLC",
     "email": "contactsyncsocials@gmail.com",
