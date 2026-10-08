@@ -1,7 +1,7 @@
 {
   "name": "sync-socials-agent",
-  "version": "1.0.0",
-  "description": "Create social content drafts, manage media, and schedule or publish to connected social accounts through Sync Socials.",
+  "version": "1.0.1",
+  "description": "Create social drafts, manage media, and schedule or publish to connected accounts, including X on paid Growth, through Sync Socials.",
   "contextFileName": "GEMINI.md",
   "settings": [
     {

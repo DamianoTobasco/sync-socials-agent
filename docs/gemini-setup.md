@@ -68,6 +68,14 @@ concept generation requires a configured workspace AI provider and uses its
 allowance. Video assembly uses existing footage. Available tools and capabilities
 are determined by the connected workspace and server.
 
+Extension 1.0.1 adds X guidance. X publishing requires active paid Growth and is
+excluded from trials and unpaid review access. Read the returned `xUsage` and
+`postingCapabilities` plus the selected account's capabilities before targeting
+X; its separate attempt and usage limits also apply to Gemini CLI. The bundled
+[agent workflow](../skills/sync-socials-agent/SKILL.md#x-publishing) documents
+caption/media limits and ambiguous-result handling. An already installed
+extension needs an update and a new session to load the revised guidance.
+
 For media, use an existing workspace asset, an authorized HTTPS URL, or the
 upload screen in Sync Socials. The hosted server cannot read files on your
 computer; this extension excludes its server-local file import tool.

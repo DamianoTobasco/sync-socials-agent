@@ -8,6 +8,19 @@ the client-specific connection and media limits below apply in Gemini CLI.
 
 - Read `syncsocials_get_workspace` before making changes. For targeted posts,
   read `syncsocials_list_connections` and use the returned account IDs.
+- X is available only on active paid Growth, excluding trials and unpaid review
+  access. Check the workspace's `xUsage` eligibility, usage, budget, and UTC reset
+  times alongside `postingCapabilities` and the selected connection's capabilities.
+  Defaults: 50 workspace attempts/month, 10/day, including 3 link posts/month;
+  each stable X account has 30/month and 3/day shared across workspaces. Reserved
+  failures count; media may exhaust the usage budget earlier. Preflight every
+  destination and final caption in a batch against the remaining allowances;
+  explain a blocked portion without silently altering approved content. Scheduled
+  posts recheck allowances at delivery. X captions allow
+  280 weighted characters including destination overrides and hashtags; posts
+  support four photos or one MP4 video up to 140 seconds and 50 MiB after processing.
+  GIFs, threads, and DMs are unsupported. Never automatically retry an ambiguous
+  X publish: inspect the saved post and actual destination first.
 - Create drafts by default. Schedule, publish, delete, or cancel only within
   the user's request. Clarify unresolved destinations or times before those
   actions; do not ask again when the user has already specified them.

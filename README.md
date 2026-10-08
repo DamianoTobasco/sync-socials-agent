@@ -93,7 +93,7 @@ ready to schedule or publish.
 
 | Tool | What it does |
 |---|---|
-| `syncsocials_get_workspace` | Read workspace settings, timezone and plan limits |
+| `syncsocials_get_workspace` | Read workspace settings, timezone, plan limits, publishing capabilities, and X eligibility/usage |
 | `syncsocials_list_connections` | List connected social accounts and their IDs |
 | `syncsocials_list_media` | Browse the media library |
 | `syncsocials_upload_media_from_url` | Upload media from an HTTPS URL |
@@ -128,7 +128,22 @@ Once connected, talk to your agent normally:
 | YouTube | Video only, exactly one video asset per post, privacy control |
 | LinkedIn | Text, image and video posts to personal profiles |
 | Telegram, Discord, Slack | Posts to connected chat destinations, within their media limits |
-| X / Twitter | Not supported in MCP v1 |
+| X / Twitter | Text, up to four photos, or one video; active paid Growth only, with separate attempt and usage limits |
+
+X is available through the same MCP endpoint and post tools. Read `xUsage` and
+`postingCapabilities` from `syncsocials_get_workspace`, then the selected
+account's capabilities from `syncsocials_list_connections`. Trials and unpaid
+review access exclude X. The default workspace allowance is 50 X attempts per
+month, 10 per day, including 3 link-post attempts per month; each stable X account
+also has 30 monthly and 3 daily attempts shared across workspaces. Reserved
+failures count, and media can exhaust the included usage budget sooner. Check
+the returned usage and UTC reset times before planning a batch.
+
+X captions allow 280 weighted characters including overrides and hashtags.
+Posts support up to four photos or one MP4 video up to 140 seconds and 50 MiB
+after processing. GIFs, threads, and DMs are unsupported. Never automatically
+retry an ambiguous publish result; inspect the saved post and actual destination
+first. See the [agent workflow](skills/sync-socials-agent/SKILL.md#x-publishing).
 
 New and existing customers can connect Facebook Pages and linked Instagram
 professional accounts after Meta approval. Each customer must grant publishing

@@ -27,8 +27,39 @@ An untargeted draft requires no social connection or AI provider.
 Facebook targets Pages. Instagram requires a linked professional account and
 image or video media; use its own returned account ID. YouTube requires one
 video asset and an explicit privacy choice. Reconnect missing or expired
-destinations in Sync Socials Connections before publishing. X/Twitter is not
-supported by this connector, regardless of the client.
+destinations in Sync Socials Connections before publishing.
+
+## X publishing
+
+X requires active paid Growth; trials and unpaid review access do not qualify.
+Before selecting X, read `syncsocials_get_workspace`: check `xUsage.enabled`,
+`xUsage.eligible`, `xUsage.disabledReason`, `xUsage.workspace.budgetExhausted`,
+and `postingCapabilities`. Use `syncsocials_list_connections` for the selected
+account's ID, supported post types, and limitations. A connection or an `x` enum
+value alone does not establish publishing access.
+
+Default allowances are 50 publishing attempts per workspace per month, 10 per
+day, and 3 link-post attempts per month. Each stable X account is also limited
+to 30 attempts per month and 3 per day, shared across workspaces; reconnecting
+does not reset them. Reserved failures count. Media can exhaust the included
+usage budget before the post count is reached. Use returned usage and UTC reset
+times; stop on allowance or budget errors rather than changing credentials.
+Before a batch, compare each selected X destination and its final caption with
+the remaining workspace, account, daily, and link allowances. Explain any blocked
+portion before writing; do not silently remove links or alter approved content.
+Scheduled deliveries check allowances again when they run; current availability
+does not guarantee capacity at a future publication time.
+
+The final X caption, including any destination override and hashtags, must fit
+280 weighted characters. URLs and Unicode use X's weighted counting rules;
+plain string length is insufficient. Use text, up to four photos, or one MP4
+video of at most 140 seconds and 50 MiB after processing. GIFs, threads, and DMs
+are unsupported. Keep `tags: []` when no hashtags are requested.
+
+Do not automatically retry an ambiguous X publish result, including a timeout
+that might have occurred after acceptance. Inspect the existing post and the
+actual X destination before any retry; explain an unresolved outcome to the
+user instead of creating a duplicate.
 
 ## Draft and edit
 
