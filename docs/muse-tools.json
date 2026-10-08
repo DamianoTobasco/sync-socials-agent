@@ -1,0 +1,949 @@
+{
+  "tools": [
+    {
+      "name": "syncsocials_get_workspace",
+      "title": "Get Sync Socials Workspace",
+      "description": "Return the authenticated workspace, API usage, limits, and MCP posting capabilities.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Get Sync Socials Workspace",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_list_connections",
+      "title": "List Social Connections",
+      "description": "List this workspace's connected TikTok, YouTube, LinkedIn personal, Telegram, Discord, Slack, Facebook Pages, and linked Instagram professional accounts.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "facebook",
+              "instagram",
+              "youtube",
+              "tiktok",
+              "linkedin",
+              "telegram",
+              "discord",
+              "slack"
+            ]
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "List Social Connections",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_list_media",
+      "title": "List Media",
+      "description": "List reusable media assets from the workspace media library.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "image",
+              "video"
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "List Media",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_upload_media_from_url",
+      "title": "Upload Media From URL",
+      "description": "Download an HTTPS image or video URL into the workspace media library.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Upload Media From URL",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_list_posts",
+      "title": "List Posts",
+      "description": "List workspace posts, optionally filtered by status.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "scheduled",
+              "published",
+              "failed"
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "List Posts",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_get_post",
+      "title": "Get Post",
+      "description": "Return one workspace post by ID, including processing status and signed media preview URLs when ready. After video production returns processing, use this to check completion and obtain its watch URL. Preview links expire after 24 hours.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "postId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Get Post",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_create_content_draft",
+      "title": "Create Untargeted Content Draft",
+      "description": "Save a generated marketing concept as an untargeted Sync Socials draft. Use this for caption and campaign ideas that do not have media or destination accounts selected yet. This never schedules or publishes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160,
+            "description": "Internal campaign title. Include the intended platform when useful, for example 'Instagram · Stop posting manually'."
+          },
+          "body": {
+            "description": "Ready-to-use caption or post copy.",
+            "type": "string",
+            "maxLength": 20000
+          },
+          "tags": {
+            "description": "Optional hashtags without #. An empty array saves no tags; omission derives tags from the title.",
+            "maxItems": 30,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Create Untargeted Content Draft",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_create_post",
+      "title": "Create Post",
+      "description": "Create a draft, schedule a post, or publish now to selected connected TikTok, YouTube, LinkedIn personal, Telegram, Discord, Slack, Facebook, or Instagram accounts. Schedule or publish only when the user explicitly requests it, with approved content, destinations and required privacy/disclosure choices. Omit action to save a draft.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Internal post title only. If the user says 'name it' or 'title it', put that text here.",
+            "type": "string"
+          },
+          "body": {
+            "description": "Caption or description only. Leave empty unless the user explicitly provides caption/body text.",
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "image",
+              "video"
+            ]
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "schedule",
+              "publish"
+            ]
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "facebook",
+                "instagram",
+                "youtube",
+                "tiktok",
+                "linkedin",
+                "telegram",
+                "discord",
+                "slack"
+              ]
+            }
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "platform": {
+                  "type": "string",
+                  "enum": [
+                    "facebook",
+                    "instagram",
+                    "youtube",
+                    "tiktok",
+                    "linkedin",
+                    "telegram",
+                    "discord",
+                    "slack"
+                  ]
+                },
+                "accountId": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "platform",
+                "accountId"
+              ]
+            }
+          },
+          "mediaAssetIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "imagePrompt": {
+            "description": "For type=image posts with no media: a vivid, production-ready prompt for the photo to generate (subject, setting, lighting, style, colors). When the server has image generation configured, Sync Socials generates a portrait image from this prompt and attaches it automatically — you do not need to upload media separately.",
+            "type": "string"
+          },
+          "videoPrompt": {
+            "description": "For type=video posts with no media: a shot-by-shot prompt for the short-form vertical video to generate. When the server has video generation configured, Sync Socials renders the video and attaches it automatically. Rendering is asynchronous and may take 1-3 minutes.",
+            "type": "string"
+          },
+          "startImageUrl": {
+            "description": "Optional for type=video: a public image URL or data URI to animate FROM (image-to-video). Use the creator's own footage frame, a product/app screenshot, or a reference still so the video is built on their visual instead of generated from scratch.",
+            "type": "string"
+          },
+          "tags": {
+            "description": "Optional hashtags without #. If omitted, Sync Socials will auto-generate three relevant hashtags from the title. An empty array saves no tags.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scheduledFor": {
+            "type": "string"
+          },
+          "youtubePrivacyStatus": {
+            "type": "string",
+            "enum": [
+              "private",
+              "unlisted",
+              "public"
+            ]
+          },
+          "tiktokPrivacyLevel": {
+            "type": "string",
+            "enum": [
+              "PUBLIC_TO_EVERYONE",
+              "MUTUAL_FOLLOW_FRIENDS",
+              "FOLLOWER_OF_CREATOR",
+              "SELF_ONLY",
+              "PRIVATE_TO_SELF"
+            ]
+          },
+          "tiktokAllowComment": {
+            "type": "boolean"
+          },
+          "tiktokAllowDuet": {
+            "type": "boolean"
+          },
+          "tiktokAllowStitch": {
+            "type": "boolean"
+          },
+          "tiktokCommercialContentEnabled": {
+            "type": "boolean"
+          },
+          "tiktokBrandOrganic": {
+            "type": "boolean"
+          },
+          "tiktokBrandedContent": {
+            "type": "boolean"
+          },
+          "tiktokMusicUsageConfirmed": {
+            "type": "boolean"
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Create Post",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_update_post",
+      "title": "Update Post",
+      "description": "Update the specified fields of a draft or scheduled post, preserving omitted content, media, destinations, schedule, and privacy choices. Untargeted drafts can be edited without selecting a social account. Scheduling or publishing still requires destinations and explicit user approval.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "description": "Internal post title only. If the user says 'name it' or 'title it', put that text here.",
+            "type": "string"
+          },
+          "body": {
+            "description": "Caption or description only. Leave empty unless the user explicitly provides caption/body text.",
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "image",
+              "video"
+            ]
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "schedule",
+              "publish"
+            ]
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "facebook",
+                "instagram",
+                "youtube",
+                "tiktok",
+                "linkedin",
+                "telegram",
+                "discord",
+                "slack"
+              ]
+            }
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "platform": {
+                  "type": "string",
+                  "enum": [
+                    "facebook",
+                    "instagram",
+                    "youtube",
+                    "tiktok",
+                    "linkedin",
+                    "telegram",
+                    "discord",
+                    "slack"
+                  ]
+                },
+                "accountId": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "platform",
+                "accountId"
+              ]
+            }
+          },
+          "mediaAssetIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "imagePrompt": {
+            "description": "For type=image posts with no media: a vivid, production-ready prompt for the photo to generate (subject, setting, lighting, style, colors). When the server has image generation configured, Sync Socials generates a portrait image from this prompt and attaches it automatically — you do not need to upload media separately.",
+            "type": "string"
+          },
+          "videoPrompt": {
+            "description": "For type=video posts with no media: a shot-by-shot prompt for the short-form vertical video to generate. When the server has video generation configured, Sync Socials renders the video and attaches it automatically. Rendering is asynchronous and may take 1-3 minutes.",
+            "type": "string"
+          },
+          "startImageUrl": {
+            "description": "Optional for type=video: a public image URL or data URI to animate FROM (image-to-video). Use the creator's own footage frame, a product/app screenshot, or a reference still so the video is built on their visual instead of generated from scratch.",
+            "type": "string"
+          },
+          "tags": {
+            "description": "Optional hashtags without #. Omit to preserve existing tags; pass [] to remove all tags.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scheduledFor": {
+            "type": "string"
+          },
+          "youtubePrivacyStatus": {
+            "type": "string",
+            "enum": [
+              "private",
+              "unlisted",
+              "public"
+            ]
+          },
+          "tiktokPrivacyLevel": {
+            "type": "string",
+            "enum": [
+              "PUBLIC_TO_EVERYONE",
+              "MUTUAL_FOLLOW_FRIENDS",
+              "FOLLOWER_OF_CREATOR",
+              "SELF_ONLY",
+              "PRIVATE_TO_SELF"
+            ]
+          },
+          "tiktokAllowComment": {
+            "type": "boolean"
+          },
+          "tiktokAllowDuet": {
+            "type": "boolean"
+          },
+          "tiktokAllowStitch": {
+            "type": "boolean"
+          },
+          "tiktokCommercialContentEnabled": {
+            "type": "boolean"
+          },
+          "tiktokBrandOrganic": {
+            "type": "boolean"
+          },
+          "tiktokBrandedContent": {
+            "type": "boolean"
+          },
+          "tiktokMusicUsageConfirmed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "postId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Update Post",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_publish_post",
+      "title": "Publish Post",
+      "description": "Publish an existing draft or scheduled post immediately.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "postId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Publish Post",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_delete_post",
+      "title": "Delete Post",
+      "description": "Delete a draft or cancel and delete a scheduled post before it goes out.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "postId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Delete Post",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_get_brand_profile",
+      "title": "Get Brand Profile",
+      "description": "Return the workspace's saved brand profile (what the product is, audience, tone, goal) used by the viral content engine. Analyze one first with syncsocials_generate_viral_concepts if none exists.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Get Brand Profile",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_generate_viral_concepts",
+      "title": "Generate Viral Machine Content Concepts",
+      "description": "Generate brand-specific social content concepts using Viral Machine formats such as reaction hooks, story stacks, POV, and listicles. Provide a website or business brief to analyze and save a brand profile when needed. Returns hooks, captions and concepts for review; does not render or publish. Requires an AI provider already configured in the workspace and uses its allowance. Use this when the user wants concepts tailored to their saved business or wants to save or produce them in Sync Socials. Engagement results are not guaranteed.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "angle": {
+            "description": "Optional focus for this batch, e.g. 'summer promo' or 'feature launch'",
+            "type": "string",
+            "maxLength": 1000
+          },
+          "formats": {
+            "description": "Optional template ids to restrict to. Available: green-screen, when-relatable, wall-of-text, pov, me-after, reaction-hook, listicle, hot-take",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "website": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 5000
+          },
+          "brand": {
+            "description": "Which business to generate for, by name or id (workspaces can hold several — e.g. 'Evolve' vs 'Sync Socials'). Omit for the first/only one.",
+            "type": "string",
+            "maxLength": 60
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Generate Viral Machine Content Concepts",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "syncsocials_produce_viral_video",
+      "title": "Produce Viral Machine Video",
+      "description": "Edit one user-approved concept into a vertical video by assembling existing library clips or the user's uploaded brand footage, overlaying text, and mixing an existing music track. This tool does not generate images, video footage, speech, or music through AI models. Save it as a draft for review, or schedule only on explicit request with selected destination account IDs. Uses workspace production allowances. If final media processing is pending, returns the post ID with processing=true; use get_post to check completion and obtain a watch/download URL. TikTok video assembly saves drafts; use the post tools with the user's privacy and disclosure choices to schedule or publish afterward.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "object",
+            "properties": {
+              "hook": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "caption": {
+                "type": "string",
+                "maxLength": 5000
+              },
+              "hashtags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "cta": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "format": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "templateId": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "overlayText": {
+                "type": "string",
+                "maxLength": 1200
+              },
+              "textBeats": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sceneryVibe": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "musicMood": {
+                "type": "string",
+                "maxLength": 20
+              },
+              "memeQuery": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "reactionEmotion": {
+                "type": "string",
+                "maxLength": 40
+              },
+              "reactionGender": {
+                "type": "string",
+                "maxLength": 20
+              },
+              "whyItWorks": {
+                "type": "string",
+                "maxLength": 500
+              }
+            },
+            "description": "The concept object, passed through unchanged"
+          },
+          "accountIds": {
+            "description": "Selected destination account IDs from list_connections. Required when scheduling. Account-linked assistant drafts have no destinations unless IDs are provided.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "videoMethod": {
+            "description": "library (default): licensed reaction/scenery clips. remix: opens with a hook clip then cuts to the user's own brand footage from their bucket.",
+            "type": "string",
+            "enum": [
+              "library",
+              "remix"
+            ]
+          },
+          "footageCategory": {
+            "description": "For remix: which business/category of the footage bucket to pull from (e.g. 'Evolve'). Omit to pull from all footage.",
+            "type": "string",
+            "maxLength": 40
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "schedule"
+            ]
+          },
+          "scheduledFor": {
+            "description": "ISO datetime, required when action=schedule",
+            "type": "string"
+          },
+          "youtubePrivacyStatus": {
+            "type": "string",
+            "enum": [
+              "private",
+              "unlisted",
+              "public"
+            ]
+          }
+        },
+        "required": [
+          "concept"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "title": "Produce Viral Machine Video",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "openid",
+              "email"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

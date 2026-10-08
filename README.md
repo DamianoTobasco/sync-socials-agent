@@ -1,11 +1,18 @@
 # Sync Socials Agent
 
-**Let your AI agent run your social media.** Sync Socials is a hosted MCP server that lets Claude Code, OpenClaw, Codex and any MCP compatible agent generate content, upload media, create drafts, schedule posts and publish to TikTok, Instagram, Facebook and YouTube.
+**Let your AI agent run your social media.** Sync Socials is a hosted MCP server for compatible AI agents, including Claude Code, OpenClaw and Codex. It provides tools to generate content, import media, create drafts, schedule posts and publish to supported social platforms.
 
-[Website](https://sync-socials.com) · [For AI agents](https://sync-socials.com/ai-social-media-agent.html) · [App](https://app.sync-socials.com)
+[Website](https://sync-socials.com) · [For AI agents](https://sync-socials.com/ai-social-media-agent.html) · [App](https://app.sync-socials.com) · [Partner program](https://sync-socials.com/referral.html)
 
-For Claude apps and Cowork, use the [Claude plugin](plugins/claude-sync-socials/README.md)
-and its hosted OAuth connection. The API-key setup below is for agent clients.
+For ChatGPT, follow the [published app setup guide](https://sync-socials.com/chatgpt.html).
+For Claude Chat and Cowork, follow the [plugin setup guide](https://sync-socials.com/claude.html)
+or read the [plugin documentation](plugins/claude-sync-socials/README.md).
+These connections use account authorization. The API-key setup below is for
+compatible agent clients.
+
+The Muse connector is **in review**, not yet publicly available. See the
+[Muse reviewer guide](docs/muse-review.md) for authentication, tool effects,
+limits and validation steps.
 
 ---
 
@@ -15,11 +22,17 @@ and its hosted OAuth connection. The API-key setup below is for agent clients.
 npx skills add DamianoTobasco/sync-socials-agent -g
 ```
 
-Works with any agent that supports the open Agent Skills format.
+The skill uses the open Agent Skills format. Your client must also support the
+remote MCP connection below to call Sync Socials tools.
 
 ## Connect the MCP server
 
 The server is remote, so there is nothing to run locally.
+
+Your client needs remote Streamable HTTP and the authentication method below.
+Directory availability and successful sign-in are separate from protocol support;
+not every agent or client version has been tested. Installing the skill does not
+connect a Sync Socials workspace or social account automatically.
 
 | | |
 |---|---|
@@ -46,6 +59,19 @@ For OpenClaw compatible CLIs:
 openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","transport":"streamable-http","headers":{"Authorization":"Bearer <SYNC_SOCIALS_API_KEY>"}}'
 ```
 
+## Create your first draft
+
+After connecting, ask your agent:
+
+> Read my Sync Socials workspace, then create an untargeted draft titled
+> "Getting started" with the caption "Our first post is coming soon."
+> Return its draft ID so I can open it in Sync Socials.
+
+This uses `syncsocials_get_workspace` and `syncsocials_create_content_draft`.
+It needs no social account or AI-generation provider. Open the saved draft,
+edit it for your business, then connect a destination in the app when you are
+ready to schedule or publish.
+
 ## Tools
 
 | Tool | What it does |
@@ -54,11 +80,11 @@ openclaw mcp set sync-socials '{"url":"https://app.sync-socials.com/api/mcp","tr
 | `syncsocials_list_connections` | List connected social accounts and their IDs |
 | `syncsocials_list_media` | Browse the media library |
 | `syncsocials_upload_media_from_url` | Upload media from an HTTPS URL |
-| `syncsocials_upload_media_from_local_file` | Upload media from a local file path |
+| `syncsocials_upload_media_from_local_file` | Import from allowed server-local paths for eligible API-key clients; cannot read an arbitrary client device's files |
 | `syncsocials_create_content_draft` | Save an untargeted content concept for later |
 | `syncsocials_get_brand_profile` | Read saved business profiles |
 | `syncsocials_generate_viral_concepts` | Generate content concepts from a brand brief |
-| `syncsocials_produce_viral_video` | Produce a short form video from a concept |
+| `syncsocials_produce_viral_video` | Assemble a short video from a concept, existing footage, text and music |
 | `syncsocials_create_post` | Create a draft or scheduled post with platform targets |
 | `syncsocials_get_post` | Read a single post |
 | `syncsocials_list_posts` | List drafts, scheduled and published posts |
@@ -97,6 +123,20 @@ access and select the intended accounts in Sync Socials Connections.
 - Access is scoped to an API key you generate and can revoke at any time.
 - Social accounts connect through each platform's official OAuth login. Sync Socials never sees your passwords.
 - Never commit your API key. Store it in your agent's MCP config or secret storage.
+
+Content generation also depends on available tools and providers. Generation
+performed by your agent uses that runtime's capabilities; hosted Sync Socials
+concept generation needs a configured workspace AI provider and uses its
+allowance. Video assembly combines existing footage, text and music. Do not
+assume an agent subscription includes every hosted generation feature.
+
+## Partners
+
+If you make tutorials or help clients connect their agents, the
+[Sync Socials partner program](https://sync-socials.com/referral.html) offers
+30% recurring commission on eligible subscription revenue, subject to its terms.
+Use an issued partner link and disclose the commercial relationship. A listing,
+installation or ordinary campaign URL does not automatically earn commission.
 
 ## REST fallback
 
