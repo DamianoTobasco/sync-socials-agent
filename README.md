@@ -12,10 +12,11 @@ compatible agent clients.
 
 Additional client packages:
 
-- [Cursor and Grok Bot](plugins/cursor-sync-socials/README.md): marketplace
-  package prepared for publisher review; public approval is separate.
+- [Cursor and Grok Bot](plugins/cursor-sync-socials/README.md): publisher
+  application submitted October 8, 2026; review pending.
 - [Grok Build](plugins/grok-sync-socials/README.md): source plugin and setup;
-  official marketplace acceptance is separate.
+  [official marketplace submission](https://github.com/xai-org/plugin-marketplace/pull/1309)
+  awaiting review.
 - [Gemini CLI](docs/gemini-setup.md): installable extension with a sensitive
   API-key setting. This is separate from the consumer Gemini app catalog.
 

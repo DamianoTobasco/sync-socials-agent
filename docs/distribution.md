@@ -13,18 +13,20 @@ Platforms decide discovery, ranking, and recommendations.
 | Claude Chat / Cowork | Plugin 0.2.2 published; separate connector review pending | [Plugin setup](https://sync-socials.com/claude.html) |
 | Muse | Submitted; business verification, reviewer access, and data assessment all in review | [Reviewer guide](muse-review.md) |
 | Official MCP Registry | Active server metadata checked October 8 | Repository `server.json` |
+| Glama | Existing public directory listing verified October 8; displayed repository content is older, and hosted deployment is not enabled | [Listing](https://glama.ai/mcp/servers/DamianoTobasco/sync-socials-agent) |
 
 ## New packages
 
 | Surface | Source | Distribution route |
 |---|---|---|
-| Cursor / Grok Bot | [`plugins/cursor-sync-socials`](../plugins/cursor-sync-socials) | Public repository submitted through [Cursor publisher application](https://cursor.com/marketplace/publish), subject to review |
-| Grok Build | [`plugins/grok-sync-socials`](../plugins/grok-sync-socials) | [xAI marketplace](https://github.com/xai-org/plugin-marketplace) contribution pinned to a source commit |
-| Gemini CLI | Root `gemini-extension.json` and [`GEMINI.md`](../GEMINI.md) | Public repository topic `gemini-cli-extension` makes it eligible for the [daily gallery crawler](https://geminicli.com/docs/extensions/releasing/) |
+| Cursor / Grok Bot | [`plugins/cursor-sync-socials`](../plugins/cursor-sync-socials) | Publisher application submitted October 8; portal confirmed receipt, pending review |
+| Grok Build | [`plugins/grok-sync-socials`](../plugins/grok-sync-socials) | [xAI marketplace PR #1309](https://github.com/xai-org/plugin-marketplace/pull/1309) opened October 8, pinned to the public source commit; review pending |
+| Gemini CLI | Root `gemini-extension.json` and [`GEMINI.md`](../GEMINI.md) | Public source published and topic `gemini-cli-extension` enabled October 8; awaiting [daily gallery crawler](https://geminicli.com/docs/extensions/releasing/) validation/indexing |
 
-Packages are prepared for those routes. This document does not assert that a
-new application has been accepted or a new gallery result is visible. Direct
-GitHub installation and marketplace discovery are distinct.
+Package source was published in commit
+`bb68a8803a97cac5f4ba94fe7b7cba6d200784ca`. No new marketplace approval or visible
+Gemini gallery result is claimed. Direct GitHub installation and marketplace
+discovery are distinct.
 
 Cursor officially documents [Grok Bot plugin installation](https://cursor.com/help/grok-bot/connect-plugins)
 and [plugin publishing](https://cursor.com/docs/reference/plugins). Its Bot
@@ -32,8 +34,12 @@ template gallery is a different surface; no self-service public template
 catalog submission was verified. A shared Bot template does not itself prove a
 catalog listing.
 
-Validation covers package structure, credential placeholders, skill behavior
-review, and documented client configuration. It does not establish an
+Validation passed Cursor's official template validator, xAI's marketplace
+component/catalog checks, and Gemini CLI 0.63.0's extension validation plus its
+versioned MCP settings schema. Skill frontmatter and independent simulated
+workflows covered drafts, publishing, local media, missing auth, timed-out
+writes, untrusted retrieved content, and unsupported X/Twitter destinations.
+These checks do not establish an
 authenticated end-to-end session in Cursor, Grok Bot, Grok Build, or Gemini CLI.
 Do not advertise those runtime tests as completed. The first-draft checks in
 each package need no social account, live publication, or AI generation.
@@ -57,7 +63,10 @@ each package need no social account, live publication, or AI generation.
 - **MCP directories:** [PulseMCP](https://www.pulsemcp.com/submit),
   [Glama](https://glama.ai/mcp/servers), and [Smithery](https://smithery.ai/docs/build/publish)
   have independent listing routes. Authentication/proxy compatibility must be
-  validated before claiming installation works. No submissions are claimed here.
+  validated before claiming installation works. No new submissions are claimed
+  here. Glama already lists the repository. Root `glama.json` identifies the
+  maintainer; [Glama's Claim ownership flow](https://glama.ai/blog/2025-07-08-what-is-glamajson)
+  must still run before claiming management access or a refreshed listing.
 
 ## Growth and referrals
 
