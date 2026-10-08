@@ -1,0 +1,14 @@
+{
+  "name": "sync-socials",
+  "version": "0.1.0",
+  "description": "Create social drafts, manage media, schedule approved posts, and check publishing results in your Sync Socials workspace.",
+  "author": {
+    "name": "Sync Socials / EvolveAI LLC",
+    "email": "contactsyncsocials@gmail.com",
+    "url": "https://sync-socials.com"
+  },
+  "homepage": "https://sync-socials.com/ai-social-media-agent.html",
+  "repository": "https://github.com/DamianoTobasco/sync-socials-agent",
+  "license": "MIT",
+  "keywords": ["sync-socials", "sync socials"]
+}

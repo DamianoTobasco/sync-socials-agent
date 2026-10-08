@@ -10,6 +10,18 @@ or read the [plugin documentation](plugins/claude-sync-socials/README.md).
 These connections use account authorization. The API-key setup below is for
 compatible agent clients.
 
+Additional client packages:
+
+- [Cursor and Grok Bot](plugins/cursor-sync-socials/README.md): marketplace
+  package prepared for publisher review; public approval is separate.
+- [Grok Build](plugins/grok-sync-socials/README.md): source plugin and setup;
+  official marketplace acceptance is separate.
+- [Gemini CLI](docs/gemini-setup.md): installable extension with a sensitive
+  API-key setting. This is separate from the consumer Gemini app catalog.
+
+See [distribution status and routes](docs/distribution.md) for verified listing
+states, validation limits, and remaining submission steps.
+
 The Muse connector is **in review**, not yet publicly available. See the
 [Muse reviewer guide](docs/muse-review.md) for authentication, tool effects,
 limits and validation steps.
@@ -40,7 +52,11 @@ connect a Sync Socials workspace or social account automatically.
 | **Transport** | Streamable HTTP |
 | **Auth** | `Authorization: Bearer <SYNC_SOCIALS_API_KEY>` |
 
-Generate an API key from your workspace settings at [app.sync-socials.com](https://app.sync-socials.com). Requires a Sync Socials plan; a free 7 day trial is available.
+Create or use your workspace API key in settings at [app.sync-socials.com](https://app.sync-socials.com).
+An eligible plan with API access is required; a free 7 day trial is available.
+Growth supports one active key. Replacing or revoking it also affects other
+clients using that key. The key grants workspace read/write access, including
+publishing, and has no automatic expiry.
 
 ```json
 {

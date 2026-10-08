@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "sync-socials": {
+      "type": "http",
+      "url": "https://app.sync-socials.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${SYNC_SOCIALS_API_KEY}"
+      }
+    }
+  }
+}

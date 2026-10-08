@@ -1,0 +1,25 @@
+{
+  "name": "sync-socials-agent",
+  "version": "1.0.0",
+  "description": "Create social content drafts, manage media, and schedule or publish to connected social accounts through Sync Socials.",
+  "contextFileName": "GEMINI.md",
+  "settings": [
+    {
+      "name": "Sync Socials API key",
+      "description": "Enter your Sync Socials workspace API key without the Bearer prefix. It grants workspace read/write access and has no automatic expiry. Replacing or revoking a shared key can disconnect other clients.",
+      "envVar": "SYNC_SOCIALS_API_KEY",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "sync-socials": {
+      "httpUrl": "https://app.sync-socials.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${SYNC_SOCIALS_API_KEY}"
+      },
+      "excludeTools": [
+        "syncsocials_upload_media_from_local_file"
+      ]
+    }
+  }
+}

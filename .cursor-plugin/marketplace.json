@@ -1,0 +1,17 @@
+{
+  "name": "sync-socials",
+  "owner": {
+    "name": "EvolveAI LLC",
+    "email": "contactsyncsocials@gmail.com"
+  },
+  "metadata": {
+    "description": "Official Sync Socials plugin for Cursor and Grok Bot.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "sync-socials",
+      "source": "plugins/cursor-sync-socials"
+    }
+  ]
+}
