@@ -10,8 +10,9 @@ The connector remains in review. The published package passed hosted tests
 using an existing custom connection, and a separate fresh custom-connector test
 passed with public OAuth and PKCE, without a client secret. The directory now
 uses that tested public-client configuration; fresh sign-in through the directory
-listing and connector/plugin pairing are not yet verified. Direct Claude Code
-authentication is unsupported.
+listing and connector/plugin pairing are not yet verified. In Claude Code, the
+tools come from a Sync Socials connector connected in your Claude account;
+Claude Code's own sign-in to the server URL is not supported.
 
 ## What you can do
 
@@ -19,7 +20,7 @@ authentication is unsupported.
 - Save caption ideas as drafts without choosing an account.
 - Create or edit posts using existing images and videos.
 - Upload images and videos from your computer when Claude can run commands
-  there, as in Cowork.
+  there, as in Claude Code or Cowork.
 - Schedule or publish selected posts when you explicitly request it.
 - Check results or cancel a selected scheduled post before publication.
 
@@ -36,8 +37,11 @@ personal Instagram accounts cannot be publishing destinations. Reconnect an olde
 connection if it is missing publishing access. Meta approval and Claude directory
 connector review are separate processes.
 
-The same workspace tools also support YouTube, TikTok, LinkedIn personal profiles,
-Telegram, Discord, and Slack when those destinations are connected and enabled.
+The same workspace tools also support TikTok, YouTube, LinkedIn personal
+profiles, Threads, Bluesky, Telegram, Discord, and Slack when those destinations
+are connected and enabled. TikTok needs your privacy level and posting consent
+before scheduling or publishing. X is available on active paid Growth; trials and
+unpaid review access exclude it.
 
 Text concepts require a configured workspace AI provider and use its allowance.
 Existing-video editing assembles footage, text overlays, and an existing
@@ -59,9 +63,11 @@ working hosted OAuth configuration. The directory configuration is saved; fresh
 sign-in through the directory connector remains unverified while its review and
 pairing are pending.
 
-This release is listed only for Claude apps and Cowork. Its URL-only MCP
-configuration does not provide the client setup required by direct Claude Code
-authentication, which is unsupported. The separately documented agent-neutral
+This release is listed for Claude apps and Cowork. In Claude Code, connect Sync
+Socials in your Claude account first; Claude Code signed in with that account
+loads the connector in a new session, and the plugin's skill uses its tools.
+Claude Code's own sign-in to the plugin's URL-only server uses a local callback
+that Sync Socials does not accept. The separately documented agent-neutral
 API-key setup is not this plugin's authentication flow.
 
 The new public OAuth client uses the authorization-code flow with required
@@ -96,13 +102,22 @@ The [Sync Socials privacy policy](https://app.sync-socials.com/privacy) applies.
 
 ## Validation and availability
 
-Version 0.2.4 lets the publishing skill upload images and videos from the
-user's computer with the hosted `syncsocials_create_media_upload` and
-`syncsocials_complete_media_upload` tools when Claude can run shell commands.
-Without a shell, it still asks for a media-library upload. It builds on the
-published 0.2.2; the held 0.2.3 X candidate is not included. The MCP URL and
-authentication flow are unchanged. The directory serves its last published
-version until the new version passes its scan and is published.
+Version 0.2.5 combines the two unsubmitted updates and the platforms production
+reported on October 27. From 0.2.4, the publishing skill uploads images and
+videos from the user's computer with the hosted `syncsocials_create_media_upload`
+and `syncsocials_complete_media_upload` tools when Claude can run shell commands,
+and still asks for a media-library upload without a shell. From 0.2.3, it adds
+X on paid Growth: eligibility, workspace/account allowances, weighted caption and
+media limits, and recovery instructions for ambiguous X outcomes. It also adds
+TikTok, Threads, and Bluesky details and the Claude Code connection path. The MCP
+URL and authentication flow are unchanged. Version 0.2.2 remains the recorded
+published directory package until 0.2.5 passes its scan and is published; a
+local version bump is not publication.
+
+The hosted MCP already supports X through the existing post tools. Before
+selecting X, read workspace `xUsage` and `postingCapabilities`, then the selected
+connection's capabilities. Trials and unpaid review access exclude X. See the
+bundled [X workflow](skills/social-publishing/SKILL.md#x-publishing) for limits.
 
 Version 0.2.2 updated the publishing skill for Facebook Pages and linked Instagram
 professional accounts, added explicit queue lookup guidance, and corrected the
