@@ -65,7 +65,7 @@ unpublished packages; check each published manifest for available source version
 
 | Package | Version / state | Distribution status or next step |
 |---|---|---|
-| Claude Chat / Cowork | 0.2.3 prepared; held | Upload/update the plugin package, pass the directory scan, and publish. Recorded published version remains 0.2.2. |
+| Claude Chat / Cowork | 0.2.3 and 0.2.4 prepared; superseded by 0.2.5, not yet submitted | Upload/update the plugin package, pass the directory scan, and publish. Recorded published version remains 0.2.2. |
 | Cursor / Grok Bot | 0.1.1 prepared; held | Publish source and update the pending publisher application through Cursor's portal if it pins or caches the prior revision; verify which revision is reviewed. No approval claimed. |
 | Grok Build | 0.1.1 prepared; held | Update marketplace PR #1309's full source commit pin after source publication; xAI review is still required. |
 | Gemini CLI | 1.0.1 published source | Installed users run `gemini extensions update sync-socials-agent` and restart. The gallery uses automatic crawling and validation, with no separate form resubmission; gallery inclusion is not yet verified. |
@@ -81,16 +81,19 @@ validation an approved listing. The [Cursor publishing reference](https://cursor
 and [Gemini release guide](https://geminicli.com/docs/extensions/releasing/)
 describe their separate distribution routes.
 
-## Direct local uploads: Claude plugin 0.2.4
+## Direct local uploads and X: Claude plugin 0.2.5
 
 Since October 27 the hosted MCP has `syncsocials_create_media_upload` and
 `syncsocials_complete_media_upload`: an agent that can run shell commands sends
 a file from the user's computer with one `curl` PUT to a one-time URL. Claude
-plugin 0.2.4 replaces the skill's "ask for a dashboard upload" fallback with
-that flow, keeping the dashboard fallback for Claude chat. It is prepared from
-the published 0.2.2, not from the held 0.2.3 X candidate, and is not yet
-submitted. Cursor, Grok Build, and the agent-neutral skill in this repository
-still describe the older flow.
+plugin 0.2.5 replaces the skill's "ask for a dashboard upload" fallback with
+that flow, keeping the dashboard fallback for Claude chat. It also carries the
+X guidance prepared for 0.2.3, TikTok, Threads, and Bluesky details matching
+production's October 27 capabilities, and the Claude Code path: a connector
+connected in the user's Claude account, which Claude Code loads when signed in
+with that account (verified with a workspace read on October 27). Claude Code's
+own loopback sign-in remains rejected. 0.2.3 and 0.2.4 were never submitted;
+0.2.5 is not yet submitted.
 
 ## Other routes
 
