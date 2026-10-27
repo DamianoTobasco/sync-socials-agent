@@ -18,6 +18,8 @@ authentication is unsupported.
 - Inspect your workspace, connected social accounts, media library, and queue.
 - Save caption ideas as drafts without choosing an account.
 - Create or edit posts using existing images and videos.
+- Upload images and videos from your computer when Claude can run commands
+  there, as in Cowork.
 - Schedule or publish selected posts when you explicitly request it.
 - Check results or cancel a selected scheduled post before publication.
 
@@ -84,18 +86,27 @@ the user connects their account.
 
 Depending on your request, tool inputs can include captions, business briefs,
 website or media URLs, media and post IDs, selected account IDs, schedules, and
-privacy choices. Sync Socials stores drafts and schedules, imports requested
-media, and sends approved posts to selected social services. Concept requests
+privacy choices. To upload a file from your computer, Claude sends its name,
+type, and size, then runs one `curl` command that sends only that file to Sync
+Socials over HTTPS with a one-time upload token. Sync Socials stores drafts and
+schedules, imports requested media, and sends approved posts to selected social
+services. Concept requests
 can fetch a supplied website and use the workspace's configured AI provider.
 The [Sync Socials privacy policy](https://app.sync-socials.com/privacy) applies.
 
 ## Validation and availability
 
-Version 0.2.2 updates the publishing skill for Facebook Pages and linked Instagram
-professional accounts, adds explicit queue lookup guidance, and corrects the
-unsupported Claude Code OAuth instruction. The MCP URL and authentication flow
-are unchanged. The directory serves its last published version until the new
-version passes its scan and is published.
+Version 0.2.4 lets the publishing skill upload images and videos from the
+user's computer with the hosted `syncsocials_create_media_upload` and
+`syncsocials_complete_media_upload` tools when Claude can run shell commands.
+Without a shell, it still asks for a media-library upload. It builds on the
+published 0.2.2; the held 0.2.3 X candidate is not included. The MCP URL and
+authentication flow are unchanged. The directory serves its last published
+version until the new version passes its scan and is published.
+
+Version 0.2.2 updated the publishing skill for Facebook Pages and linked Instagram
+professional accounts, added explicit queue lookup guidance, and corrected the
+unsupported Claude Code OAuth instruction.
 
 The public 0.2.0 package passed directory validation and its security scan, was
 published, and was installed through its public listing. Hosted tests verified
