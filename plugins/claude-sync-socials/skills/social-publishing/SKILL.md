@@ -61,9 +61,21 @@ specific remedy returned by the service.
 
 Use `syncsocials_list_media` for existing images or videos. Import an existing
 user-provided HTTPS media URL with `syncsocials_upload_media_from_url`, then use
-the returned asset ID. Hosted OAuth tools cannot read a file path on the user's
-computer. If an attachment has no usable HTTPS URL or asset ID, ask the user to
-upload it to the Sync Socials media library; do not invent a URL.
+the returned asset ID.
+
+Hosted OAuth tools cannot read a file path on the user's computer. When you can
+run shell commands where the file is, as in Claude Code or Cowork, upload it
+directly. Call `syncsocials_create_media_upload` with its name, MIME type, and
+exact size in bytes (from `wc -c`); images can be up to 25 MB and videos up to
+250 MB. Run the returned `curlCommand` once, in one shell command that first
+sets `FILE` to the local path (`FILE='/path/to/clip.mp4'; ...`). The upload
+expires after 30 minutes. When curl exits successfully, call
+`syncsocials_complete_media_upload` with the `uploadId` and use the returned
+`mediaAssetIds`; repeating that call is safe. The command carries a one-time
+upload token: never print, echo, or repeat it in replies or files. Where you
+have no shell, as in Claude chat, or the upload cannot reach Sync Socials, ask
+the user to upload the file to the Sync Socials media library; do not invent a
+URL.
 
 For Sync Socials campaign concepts, inspect `syncsocials_get_brand_profile`, then
 use `syncsocials_generate_viral_concepts` when the user requests concepts. Select

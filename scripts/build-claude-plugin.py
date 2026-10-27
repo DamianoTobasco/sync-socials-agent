@@ -22,6 +22,7 @@ ENDPOINT = "https://app.sync-socials.com/api/mcp"
 TOOLS = {
     "syncsocials_get_workspace", "syncsocials_list_connections",
     "syncsocials_list_media", "syncsocials_upload_media_from_url",
+    "syncsocials_create_media_upload", "syncsocials_complete_media_upload",
     "syncsocials_create_content_draft", "syncsocials_get_brand_profile",
     "syncsocials_generate_viral_concepts", "syncsocials_produce_viral_video",
     "syncsocials_create_post", "syncsocials_get_post", "syncsocials_list_posts",
